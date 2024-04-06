@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Image for Plagiarism Check</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e6e6fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 50px;
+        }
+
+        form {
+            width: 60%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            display: flex; /* Use flexbox layout */
+            flex-direction: column; /* Arrange elements vertically */
+            align-items: center; /* Center elements horizontally */
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 12px;
+            background-color: #000000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        #preview-container {
+            width: calc(100% - 20px);
+            margin-bottom: 20px;
+            display: none; /* Initially hide the preview container */
+        }
+
+        #preview {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="lo">
+        <h1 class="center">Image Plagiarism Checker</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="file">Select an image:</label>
+            <input type="file" name="file" id="file" required onchange="previewImage(event)">
+            <div id="preview-container">
+                <img id="preview" src="" alt="Image preview">
+            </div>
+            <input type="submit" value="Upload Image">
+        </form>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            const previewContainer = document.getElementById('preview-container');
+            const preview = document.getElementById('preview');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function() {
+                preview.src = reader.result;
+                previewContainer.style.display = 'block'; // Show the preview container
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
